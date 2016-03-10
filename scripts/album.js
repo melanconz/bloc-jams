@@ -68,16 +68,25 @@ var songRows = document.getElementsByClassName('album-view-song-item');
 var playButtonTemplate ='<a class="album-song-button"><span class="ion-play"></span></a>'
 var pauseButtonTemplate ='<a class="album-song-button"><span class="ion-pause"></span></a>';
 
-
 var findParentByClassName = function(element, targetClass) {
-    if (element) {
-        var currentParent = element.parentElement;
-        while (currentParent.className != targetClass) {
+    var currentParent = element.parentElement;
+    
+    if (currentParent) {    
+        while (currentParent.className && currentParent.className != targetClass) {
             currentParent = currentParent.parentElement;
         }
-        return currentParent;
+        
+        if (currentParent.className == targetClass) {
+            return currentParent;
+        } else {
+            alert("No parent with that class name found.");
+        }
+    } else {
+        alert("No parent found.");
     }
+
 };
+
 
 var getSongItem = function(element) {
     switch(element.className) {
